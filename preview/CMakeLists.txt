@@ -64,7 +64,7 @@ else()
 endif()
 
 add_library(preview null_preview.cpp ${SRC})
-target_link_libraries(preview ${TARGET_LIBS})
+target_link_libraries(preview ${TARGET_LIBS} libcamera_apps_core)
 
 target_compile_definitions(preview PUBLIC LIBDRM_PRESENT=${DRM_FOUND})
 target_compile_definitions(preview PUBLIC LIBEGL_PRESENT=${EGL_FOUND})
@@ -72,3 +72,4 @@ target_compile_definitions(preview PUBLIC QT_PRESENT=${QT_FOUND})
 
 install(TARGETS preview LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
+target_link_directories(preview PRIVATE ${RPI_3RDPARTY}/syslibs/lib)

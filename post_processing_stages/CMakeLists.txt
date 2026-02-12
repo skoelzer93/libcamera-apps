@@ -49,7 +49,8 @@ else()
 endif()
 
 add_library(post_processing_stages ${SRC})
-target_link_libraries(post_processing_stages ${TARGET_LIBS})
+target_link_directories(post_processing_stages PRIVATE ${RPI_3RDPARTY}/syslibs/lib)
+target_link_libraries(post_processing_stages ${TARGET_LIBS} libcamera_apps_core)
 target_compile_definitions(post_processing_stages PUBLIC OPENCV_PRESENT=${OpenCV_FOUND})
 
 install(TARGETS post_processing_stages LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})

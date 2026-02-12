@@ -1,32 +1,282 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(libcamera-still)
-add_executable(libcamera-still libcamera_still.cpp)
-target_link_libraries(libcamera-still libcamera_app images)
+ project(libcamera-still)
+ add_executable(libcamera-still libcamera_still.cpp)
+ target_link_directories(libcamera-still 
+     PRIVATE 
+     ${RPI_3RDPARTY}/boost/lib
+     ${RPI_3RDPARTY}/opencv/lib
+     ${RPI_3RDPARTY}/libcamera/lib
+     ${RPI_3RDPARTY}/syslibs/lib
+ )
+ target_link_libraries(libcamera-still 
+     PRIVATE 
+     libcamera_app 
+     images
+     libcamera_apps_core
+     boost_program_options
+     jpeg
+     exif
+     tiff
+     deflate
+     lzma
+     z
+     webp
+     jbig
+     zstd
+     camera
+     camera-base
+     udev
+     dw
+     elf
+     gnutls
+     gnutlsxx
+     hogweed
+     nettle
+     p11-kit
+     tasn1
+     gmp
+     gmpxx
+     bz2
+     ffi
+     unistring
+     idn2
+     unwind
+     png16
+ )
+  project(libcamera-vid)
+  add_executable(libcamera-vid libcamera_vid.cpp)
+  target_link_directories(libcamera-vid 
+     PRIVATE 
+     ${RPI_3RDPARTY}/boost/lib
+     ${RPI_3RDPARTY}/opencv/lib
+     ${RPI_3RDPARTY}/libcamera/lib
+     ${RPI_3RDPARTY}/syslibs/lib
+ )
+  target_link_libraries(libcamera-vid 
+     PRIVATE 
+     libcamera_app 
+     encoders 
+     outputs 
+     libcamera_apps_core
+     boost_program_options
+     camera
+     camera-base
+     exif
+     png
+     png16
+     jpeg
+     elf
+     gnutls
+     gnutlsxx
+     udev
+     tiff
+     hogweed
+     nettle
+     p11-kit
+     tasn1
+     gmp
+     gmpxx
+     bz2
+     ffi
+     unistring
+     idn2
+     unwind
+     deflate
+     lzma
+     z
+     webp
+     jbig
+     zstd
+     dw
+ )
+  project(libcamera-hello)
+  add_executable(libcamera-hello libcamera_hello.cpp)
+  target_link_directories(libcamera-hello PRIVATE
+     ${RPI_3RDPARTY}/boost/lib
+     ${RPI_3RDPARTY}/opencv/lib
+     ${RPI_3RDPARTY}/libcamera/lib
+     ${RPI_3RDPARTY}/syslibs/lib
+ )
+  target_link_libraries(libcamera-hello 
+     PRIVATE 
+     libcamera_app 
+     libcamera_apps_core
+     boost_program_options
+     camera
+     camera-base
+     exif
+     png
+     png16
+     jpeg
+     elf
+     gnutls
+     gnutlsxx
+     udev
+     tiff
+     hogweed
+     nettle
+     p11-kit
+     tasn1
+     gmp
+     gmpxx
+     bz2
+     ffi
+     unistring
+     idn2
+     unwind
+     deflate
+     lzma
+     z
+     webp
+     jbig
+     zstd
+     dw
+ )
+  project(libcamera-raw)
+  add_executable(libcamera-raw libcamera_raw.cpp)
+  target_link_directories(libcamera-raw 
+     PRIVATE 
+     ${RPI_3RDPARTY}/syslibs/lib
+     ${RPI_3RDPARTY}/boost/lib
+     ${RPI_3RDPARTY}/opencv/lib
+     ${RPI_3RDPARTY}/libcamera/lib
+  )
+  target_link_libraries(libcamera-raw 
+     PRIVATE 
+     libcamera_app 
+     encoders
+     outputs
+     libcamera_apps_core
+     boost_program_options
+     camera
+     camera-base
+     exif
+     png
+     png16
+     jpeg
+     elf
+     gnutls
+     gnutlsxx
+     udev
+     tiff
+     hogweed
+     nettle
+     p11-kit
+     tasn1
+     gmp
+     gmpxx
+     bz2
+     ffi
+     unistring
+     idn2
+     unwind
+     deflate
+     lzma
+     z
+     webp
+     jbig
+     zstd
+     dw
+ )
 
-project(libcamera-vid)
-add_executable(libcamera-vid libcamera_vid.cpp)
-target_link_libraries(libcamera-vid libcamera_app encoders outputs)
+ project(libcamera-jpeg)
+ add_executable(libcamera-jpeg libcamera_jpeg.cpp)
+ target_link_directories(libcamera-jpeg 
+    PRIVATE 
+    ${RPI_3RDPARTY}/syslibs/lib
+    ${RPI_3RDPARTY}/boost/lib
+    ${RPI_3RDPARTY}/opencv/lib
+    ${RPI_3RDPARTY}/libcamera/lib
+)
+ target_link_libraries(libcamera-jpeg 
+    PRIVATE 
+    libcamera_app 
+    images 
+    libcamera_apps_core
+    boost_program_options
+    camera
+    camera-base
+    exif
+    png
+    png16
+    jpeg
+    elf
+    gnutls
+    gnutlsxx
+    udev
+    tiff
+    hogweed
+    nettle
+    p11-kit
+    tasn1
+    gmp
+    gmpxx
+    bz2
+    ffi
+    unistring
+    idn2
+    unwind
+    deflate
+    lzma
+    z
+    webp
+    jbig
+    zstd
+    dw
+ )
 
-project(libcamera-hello)
-add_executable(libcamera-hello libcamera_hello.cpp)
-target_link_libraries(libcamera-hello libcamera_app)
-
-project(libcamera-raw)
-add_executable(libcamera-raw libcamera_raw.cpp)
-target_link_libraries(libcamera-raw libcamera_app encoders outputs)
-
-project(libcamera-jpeg)
-add_executable(libcamera-jpeg libcamera_jpeg.cpp)
-target_link_libraries(libcamera-jpeg libcamera_app images)
-
-set(EXECUTABLES libcamera-still libcamera-vid libcamera-hello libcamera-raw libcamera-jpeg)
+set(EXECUTABLES 
+libcamera-still 
+libcamera-vid 
+libcamera-hello 
+libcamera-raw 
+libcamera-jpeg
+)
 
 if (ENABLE_TFLITE)
     project(libcamera-detect)
     add_executable(libcamera-detect libcamera_detect.cpp)
-    target_link_libraries(libcamera-detect libcamera_app images)
-    set(EXECUTABLES ${EXECUTABLES} libcamera-detect)
+    target_link_directories(libcamera-detect PRIVATE 
+        ${RPI_3RDPARTY}/syslibs/lib
+        ${RPI_3RDPARTY}/boost/lib
+        ${RPI_3RDPARTY}/opencv/lib
+        ${RPI_3RDPARTY}/libcamera/lib
+    )
+    target_link_libraries(libcamera-detect images 
+    libcamera_apps_core
+    boost_program_options
+    camera
+    camera-base
+    exif
+    png
+    png16
+    jpeg
+    elf
+    gnutls
+    gnutlsxx
+    udev
+    tiff
+    hogweed
+    nettle
+    p11-kit
+    tasn1
+    gmp
+    gmpxx
+    bz2
+    ffi
+    unistring
+    idn2
+    unwind
+    deflate
+    lzma
+    z
+    webp
+    jbig
+    zstd
+    dw
+    )
+    set(EXECUTABLES ${EXECUTABLES} libcamera-detect libcamera_apps_core)
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_BINARY_DIR})
